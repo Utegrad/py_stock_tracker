@@ -1,0 +1,12 @@
+Django
+django-crispy-forms
+django-debug-toolbar
+django-environ
+django-extensions
+djangorestframework
+environ
+psycopg2
+python-dateutil
+pytz
+six
+sqlparse
