@@ -5,6 +5,8 @@
 
 # User-specific stuff
 *.db
+*/import_data/*.txt
+
 
 .idea/**/workspace.xml
 .idea/**/tasks.xml
