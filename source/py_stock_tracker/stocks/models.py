@@ -11,8 +11,9 @@ class TimeStampedObjectModel(models.Model):
 
 
 class Stock(TimeStampedObjectModel):
-    name = models.CharField(max_length=128, blank=False)
-    symbol = models.CharField(max_length=32, blank=False)
+    name = models.CharField(max_length=128, blank=False, unique=True, )
+    symbol = models.CharField(max_length=32, blank=False, unique=True, db_index=True, )
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return "{0} [{1}]".format(self.symbol, self.name)
