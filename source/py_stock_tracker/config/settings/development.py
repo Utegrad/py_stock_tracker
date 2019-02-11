@@ -6,7 +6,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 DATABASES = {'default': env.db(), }
 
-INTERNAL_IPS =env('INTERNAL_IPS')
+INTERNAL_IPS = env('INTERNAL_IPS')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
