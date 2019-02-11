@@ -4,7 +4,7 @@ DEBUG = env.bool('DJANGO_DEBUG', default=True)
 
 SECRET_KEY = env('SECRET_KEY')
 
-DATABASES = { 'default': env.db(), }
+DATABASES = {'default': env.db(), }
 
 INTERNAL_IPS =env('INTERNAL_IPS')
 
