@@ -6,6 +6,7 @@
 # User-specific stuff
 *.db
 */import_data/*.txt
+*/import_data/*.csv
 
 
 .idea/**/workspace.xml
