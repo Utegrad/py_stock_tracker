@@ -1,7 +1,8 @@
 import unittest
+from io import StringIO
 
+from django.core.management import call_command
 from django.db import IntegrityError
-from django.test import TestCase
 
 from .models import Stock
 
@@ -25,3 +26,8 @@ class StockTestCases(unittest.TestCase):
         Stock.objects.create(name=stock_name, symbol=stock_symbol_1)
         with self.assertRaisesRegexp(IntegrityError, 'UNIQUE constraint failed'):
             Stock.objects.create(name=stock_name, symbol=stock_symbol_2)
+
+    def test_command_importstocks_output(self):
+        out = StringIO()
+        call_command('importstocks', 'a path', stdout=out, )
+        self.assertIn('Expected output', out.getvalue())
