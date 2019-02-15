@@ -33,9 +33,3 @@ class StockTestCases(unittest.TestCase):
             call_command('importstocks', )
         except Exception:
             self.fail("importstocks with no argument raised an exception")
-
-    @unittest.skipUnless(os.environ['RUN_FUNCTIONAL_TESTS'] == 'True', "Not running functional tests.")
-    def test_command_importstocks_opens_file(self):
-        out = StringIO()
-        call_command('importstocks', stdout=out, )
-        self.assertIn('AMEX', out.getvalue())
