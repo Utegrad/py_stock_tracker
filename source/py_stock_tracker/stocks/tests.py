@@ -1,3 +1,4 @@
+import os
 import unittest
 from io import StringIO
 
@@ -27,7 +28,14 @@ class StockTestCases(unittest.TestCase):
         with self.assertRaisesRegexp(IntegrityError, 'UNIQUE constraint failed'):
             Stock.objects.create(name=stock_name, symbol=stock_symbol_2)
 
-    def test_command_importstocks_output(self):
+    def test_command_import_stocks_no_args(self):
+        try:
+            call_command('importstocks', )
+        except Exception:
+            self.fail("importstocks with no argument raised an exception")
+
+    @unittest.skipUnless(os.environ['RUN_FUNCTIONAL_TESTS'] == 'True', "Not running functional tests.")
+    def test_command_importstocks_opens_file(self):
         out = StringIO()
-        call_command('importstocks', 'a path', stdout=out, )
-        self.assertIn('Expected output', out.getvalue())
+        call_command('importstocks', stdout=out, )
+        self.assertIn('AMEX', out.getvalue())
