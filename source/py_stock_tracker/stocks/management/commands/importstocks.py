@@ -40,15 +40,15 @@ class Command(BaseCommand):
                     msg = "Adding {} : {} to database".format(row[0], row[1])
                     # self.stdout.write(msg)
                     try:
-                        Stock.objects.update_or_create(symbol=row[0], name=row[1], )
+                        Stock.objects.update_or_create(name=row[0], ticker=row[1], )
                         successful_adds += 1
                     except IntegrityError as E:
                         msg = "Failed to add {} : {} to database".format(row[0], row[1])
                         self.stderr.write(msg)
                         self.stderr.write(str(E))
-                        failed_adds.append(row[1])
+                        failed_adds.append((row[0],row[1]))
         self.stdout.write("Successfully added {} records".format(str(successful_adds)))
         msg = "Failed to add {} records".format(len(failed_adds))
         self.stdout.write(msg)
         for fail in failed_adds:
-            self.stdout.write(fail)
+            self.stdout.write(str(fail))
